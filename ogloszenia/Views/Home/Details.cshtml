@@ -1,6 +1,33 @@
-﻿@{
-    ViewData["Title"] = "Details";
+﻿@model ogloszenia.Models.Offer
+@{
+    ViewData["Title"] = "Szczegóły oferty";
 }
 <h1>@ViewData["Title"]</h1>
-
-<p>Strona ze szczegółami</p>
+<div>
+    <table>
+            <tr>
+                <th>
+                    <p>Nazwa</p>
+                </th>
+                <th>
+                    <p>@Model.name</p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p>Data wygaśnięcia oferty</p>
+                </th>
+                <th>
+                    <p>@Model.date</p>
+                </th>
+            </tr>
+            <tr>
+                <th>
+                    <p>Opis</p>
+                </th>
+                <th>
+                    <p>@Model.description</p>
+                </th>
+            </tr>
+        </table>
+</div>

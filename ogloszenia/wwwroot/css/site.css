@@ -16,3 +16,14 @@ html {
 body {
   margin-bottom: 60px;
 }
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 15px;
+}
+
+th {
+    padding: 1%;
+    border-bottom: 1pt solid black;
+    font-weight: normal;
+}

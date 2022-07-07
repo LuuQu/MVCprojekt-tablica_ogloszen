@@ -20,12 +20,35 @@ namespace ogloszenia.Controllers
         }
         public IActionResult Details()
         {
-            return View();
+            int id = 0;
+            try
+            {
+                id = int.Parse(HttpContext.Session.GetString("id"));
+            }
+            catch 
+            {
+            }
+            if(id != 0)
+            {
+                offer = _personService.GetOffer(id);
+            }
+            else
+            {
+                offer = new Offer();
+            }
+            return View(offer);
         }
-        public IActionResult Index()
+        public IActionResult Index(int buttonid)
         {
-
-            return View(offerList);
+            if(buttonid == 0)
+            {
+                return View(offerList);
+            }
+            else
+            {
+                HttpContext.Session.SetString("id", buttonid.ToString());
+                return RedirectToAction("Details");
+            }
         }
 
         public IActionResult Privacy()

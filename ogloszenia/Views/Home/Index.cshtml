@@ -6,10 +6,10 @@
 <div class="text-center">
      <table>
             <tr>
-                <th>
+                <th style="font-weight: bold;">
                     <p>Nazwa</p>
                 </th>
-                <th>
+                <th style="font-weight: bold;">
                     <p>Data</p>
                 </th>
                 <th>&nbsp</th>
@@ -25,7 +25,7 @@
                 </th>
                 <th>
                     <form method="post">
-                        <input type="submit" class="btn btn-primary" asp-action="Details" Value="Szczegóły" />
+                        <button name="buttonid" type="submit" class="btn btn-primary" value="@item.id">Szczegóły</button>
                     </form>
                 </th>
             </tr>
