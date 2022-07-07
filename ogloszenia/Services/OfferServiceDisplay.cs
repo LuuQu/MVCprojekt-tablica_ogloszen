@@ -11,9 +11,9 @@ namespace ogloszenia.Services
         {
             _context = context;
         }
-        public IQueryable<Offer> GetAllOffers()
-        {
-            return _context.Offer;
+        public List<Offer> GetAllOffers()
+        { 
+            return _context.Offer.ToList();
         }
         public void AddOffer(Offer offer)
         {

@@ -1,8 +1,34 @@
-﻿@{
+﻿@model List<ogloszenia.Models.Offer>
+@{
     ViewData["Title"] = "Home Page";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+     <table>
+            <tr>
+                <th>
+                    <p>Nazwa</p>
+                </th>
+                <th>
+                    <p>Data</p>
+                </th>
+                <th>&nbsp</th>
+            </tr>
+        @foreach (var item in Model) 
+        {
+            <tr id="borders">
+                <th>
+                    <p>@item.name</p>
+                </th>
+                <th>
+                    <p>@item.date</p>
+                </th>
+                <th>
+                    <form method="post">
+                        <input type="submit" class="btn btn-primary" asp-action="Details" Value="Szczegóły" />
+                    </form>
+                </th>
+            </tr>
+        }
+        </table>
 </div>
