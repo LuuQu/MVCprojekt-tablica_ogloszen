@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using ogloszenia.Models;
 
 namespace ogloszenia.Data
 {
@@ -9,5 +10,6 @@ namespace ogloszenia.Data
             : base(options)
         {
         }
+        public DbSet<Offer> Offer { get; set; }
     }
 }
