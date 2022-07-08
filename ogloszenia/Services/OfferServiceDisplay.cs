@@ -13,7 +13,7 @@ namespace ogloszenia.Services
         }
         public List<Offer> GetAllOffers()
         { 
-            return _context.Offer.ToList();
+            return _context.Offer.OrderByDescending(x => x.date).Where(x => x.date > DateTime.Now.AddDays(-10)).ToList();
         }
         public void AddOffer(Offer offer)
         {

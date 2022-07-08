@@ -18,7 +18,6 @@ namespace ogloszenia.Controllers
         {
             _logger = logger;
             _personService = personService;
-            offerList = _personService.GetAllOffers();
         }
         public IActionResult Details()
         {
@@ -51,11 +50,25 @@ namespace ogloszenia.Controllers
             }
             return View();
         }
-        public IActionResult Index(int buttonid)
+        public IActionResult Index(int buttonid, int page)
         {
-            if(buttonid == 0)
+            if (buttonid == 0)
             {
-                return View(offerList);
+                int pageSize = 5;
+                if (page < 1)
+                {
+                    page = 1;
+                }
+                offerList = _personService.GetAllOffers();
+                int offersCount = offerList.Count();
+                Pager pager = new Pager(offersCount, page, pageSize);
+                int pagesToSkip = (page - 1) * pageSize;
+                var data = offerList.Skip(pagesToSkip).Take(pageSize).ToList();
+                if(pager.TotalPages != 1)
+                {
+                    this.ViewBag.Pager = pager;
+                }
+                return View(data);
             }
             else
             {
