@@ -44,6 +44,7 @@ namespace ogloszenia.Controllers
         {
             if (newOffer.name != null && newOffer.description != null)
             {
+                TempData["AlertMessage"] = "Oferta o nazwie " + newOffer.name + " została dodana pomyślnie.";
                 newOffer.ownerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _personService.AddOffer(newOffer);
                 return RedirectToAction("Index");

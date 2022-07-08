@@ -11,7 +11,12 @@
         currentPage = pager.CurrentPage;
     }
 }
-
+@if(TempData["AlertMessage"] != null)
+{
+    <div class="alert alert-success">
+        @TempData["AlertMessage"]
+    </div>
+}
 <div class="text-center">
     @if(dataCount == 0) 
     {
