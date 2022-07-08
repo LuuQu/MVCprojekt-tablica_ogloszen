@@ -27,3 +27,22 @@ th {
     border-bottom: 1pt solid black;
     font-weight: normal;
 }
+.left {
+    float: left;
+    width: 48%;
+}
+.right {
+    float: right;
+    width: 48%;
+    margin: 5px;
+}
+.center {
+    float: left;
+    width: 100%;
+    text-align: center;
+    margin: 5px;
+}
+textarea {
+    width: 100%;
+    height: 100%;
+}

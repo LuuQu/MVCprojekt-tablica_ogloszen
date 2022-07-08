@@ -2,6 +2,8 @@
 using ogloszenia.Models;
 using ogloszenia.Interfaces;
 using System.Diagnostics;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ogloszenia.Controllers
 {
@@ -37,6 +39,17 @@ namespace ogloszenia.Controllers
                 offer = new Offer();
             }
             return View(offer);
+        }
+        [Authorize]
+        public IActionResult AddOffer(Offer newOffer)
+        {
+            if (newOffer.name != null && newOffer.description != null)
+            {
+                newOffer.ownerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                _personService.AddOffer(newOffer);
+                return RedirectToAction("Index");
+            }
+            return View();
         }
         public IActionResult Index(int buttonid)
         {

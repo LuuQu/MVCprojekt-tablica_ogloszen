@@ -17,6 +17,7 @@ namespace ogloszenia.Services
         }
         public void AddOffer(Offer offer)
         {
+            offer.date = DateTime.Now;
             _context.Offer.Add(offer);
             _context.SaveChanges();
         }
