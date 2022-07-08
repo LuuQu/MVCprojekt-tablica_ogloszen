@@ -4,6 +4,7 @@
     ViewData["Title"] = "Home Page";
     Pager pager = new Pager();
     int currentPage = 0;
+    int dataCount = Model.Count();
     if(ViewBag.Pager != null)
     {
         pager = ViewBag.Pager;
@@ -12,34 +13,29 @@
 }
 
 <div class="text-center">
-
-     <table>
-            <tr>
-                <th style="font-weight: bold;">
-                    <p>Nazwa</p>
-                </th>
-                <th style="font-weight: bold;">
-                    <p>Data</p>
-                </th>
-                <th>&nbsp</th>
-            </tr>
-        @foreach (var item in Model) 
-        {
-            <tr id="borders">
-                <th>
-                    <p>@item.name</p>
-                </th>
-                <th>
-                    <p>@item.date</p>
-                </th>
-                <th>
+    @if(dataCount == 0) 
+    {
+        <h1>Brak dostępnych ofert</h1>
+    }
+    @if (dataCount != 0)
+    {
+        <div class="dataDisplay">
+            @foreach (var item in Model)
+            {
+                <div>
                     <form method="post">
-                        <button name="buttonid" type="submit" class="btn btn-primary" value="@item.id">Szczegóły</button>
+                        <button name="buttonid" value="@item.id" id="data" class="btn btn-light">
+                            <p style="font-weight: bold;">Nazwa:</p>
+                            <p>@item.name</p>
+                            <br>
+                            <p style="font-weight: bold;">Data:</p>
+                            <p>@item.date</p>
+                        </button>
                     </form>
-                </th>
-            </tr>
-        }
-        </table>
+                </div>
+            }
+        </div>
+    }
      <div>
         @if (pager.TotalPages > 0)
         {

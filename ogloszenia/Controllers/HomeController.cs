@@ -54,7 +54,7 @@ namespace ogloszenia.Controllers
         {
             if (buttonid == 0)
             {
-                int pageSize = 5;
+                int pageSize = 4;
                 if (page < 1)
                 {
                     page = 1;

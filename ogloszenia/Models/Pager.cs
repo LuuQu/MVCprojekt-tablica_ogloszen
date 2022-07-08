@@ -22,10 +22,6 @@
             if(EndPage > TotalPages)
             {
                 EndPage = TotalPages;
-                if(EndPage > 7)
-                {
-                    StartPage = EndPage - 6;
-                }
             }
             TotalItems = totalItems;
             PageSize = pagesize;
