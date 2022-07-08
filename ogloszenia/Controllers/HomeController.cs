@@ -17,11 +17,13 @@ namespace ogloszenia.Controllers
         public HomeController(ILogger<HomeController> logger, IOfferService personService)
         {
             _logger = logger;
+            //_personService - zbiór wszystkich Interfejsy/Serwisy użytych w programie
             _personService = personService;
         }
         public IActionResult Details()
         {
             int id = 0;
+            //Próba wczytania z serwisów id oferty, której chcemy wyświetlić szczegóły
             try
             {
                 id = int.Parse(HttpContext.Session.GetString("id"));
@@ -35,6 +37,7 @@ namespace ogloszenia.Controllers
             }
             else
             {
+                //w razie braku możliwości wczytania oferty, wyświetla domyślną stronę bez danych
                 offer = new Offer();
             }
             return View(offer);
@@ -42,9 +45,12 @@ namespace ogloszenia.Controllers
         [Authorize]
         public IActionResult AddOffer(Offer newOffer)
         {
+            //Program wchodzi w if-a jeżeli dane na stronie zostały poprawnie wypełnione
             if (newOffer.name != null && newOffer.description != null)
             {
+                //Tworzenie potwierdzenia poprawnego dodania oferty
                 TempData["AlertMessage"] = "Oferta o nazwie " + newOffer.name + " została dodana pomyślnie.";
+                //Dodawanie oferty i powrót do Indexa
                 newOffer.ownerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _personService.AddOffer(newOffer);
                 return RedirectToAction("Index");
@@ -55,22 +61,27 @@ namespace ogloszenia.Controllers
         {
             if (buttonid == 0)
             {
+                //Tworzenie komponentów potrzebnych do page-owania
                 int pageSize = 4;
                 if (page < 1)
                 {
                     page = 1;
                 }
+                //Wczyt ofert
                 offerList = _personService.GetAllOffers();
                 int offersCount = offerList.Count();
                 Pager pager = new Pager(offersCount, page, pageSize);
+                //pagesToSkip - ilość ofert, które są wyświetlane na poprzednich stronach
                 int pagesToSkip = (page - 1) * pageSize;
                 var data = offerList.Skip(pagesToSkip).Take(pageSize).ToList();
                 if(pager.TotalPages != 1)
                 {
+                    //Pasek do page'owania jest tworzony, gdy jest więcej, niż 1 strona
                     this.ViewBag.Pager = pager;
                 }
                 return View(data);
             }
+            //Wykonuje się przy kliknięciu na wybraną ofertę
             else
             {
                 HttpContext.Session.SetString("id", buttonid.ToString());
