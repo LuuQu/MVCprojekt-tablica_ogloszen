@@ -16,6 +16,7 @@ namespace ogloszenia.Controllers
         public HomeController(IOfferService personService)
         {
             _personService = personService;
+            
         }
         public IActionResult Details(int id)
         {
@@ -38,7 +39,7 @@ namespace ogloszenia.Controllers
         {
             if (newOffer.name != null && newOffer.description != null)
             {
-                TempData["AlertMessage"] = "Oferta o nazwie " + newOffer.name + " została dodana pomyślnie.";
+                TempData["AlertMessage"] = "Ogłoszenie o nazwie " + newOffer.name + " zostało dodana pomyślnie.";
                 newOffer.ownerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _personService.AddOffer(newOffer);
                 return RedirectToAction("Index");

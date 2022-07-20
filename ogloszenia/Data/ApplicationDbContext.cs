@@ -9,6 +9,7 @@ namespace ogloszenia.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            Database.EnsureCreated();
         }
         public DbSet<Offer> Offer { get; set; }
     }

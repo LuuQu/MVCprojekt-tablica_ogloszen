@@ -1,16 +1,13 @@
 ﻿@model ogloszenia.Models.Offer
 @{
-    ViewData["Title"] = "Nowa oferta";
+    ViewData["Title"] = "Nowe ogłoszenie";
 }
 <h1>@ViewData["Title"]</h1>
 <form class="needs-validation" novalidate>
                 <div>
                 <div class="left">
-                <input type="hidden" asp-for="@Model.id" />
-                <input type="hidden" asp-for="@Model.ownerId" />
-                <input type="hidden" asp-for="@Model.date" />
                 <div>
-                    <p>Nazwa produktu</p>
+                    <p>Tytuł</p>
                     <input id="name" class="form-control" asp-for="@Model.name" onkeyup="EnableDisable()" required/>
                 </div>
                 </div>
@@ -20,6 +17,6 @@
                 </div>
                 </div>
                 <div class="center">
-                <button id="button"  type="submit" class="btn btn-primary" onclick="return confirm('Czy na pewno chcesz dodać ogłoszenie o następującym tytule: ' + GetName());" disabled>Utwórz ofertę</button>
+                <button id="button"  type="submit" class="btn btn-primary" onclick="return confirm('Czy na pewno chcesz dodać ogłoszenie o następującym tytule: ' + GetName());" disabled>Utwórz ogłoszenie</button>
                 </div>
             </form>

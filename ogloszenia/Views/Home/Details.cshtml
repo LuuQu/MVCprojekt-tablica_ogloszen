@@ -1,13 +1,19 @@
 ﻿@model ogloszenia.Models.Offer
 @{
-    ViewData["Title"] = "Szczegóły oferty";
+    ViewData["Title"] = "Szczegóły ogłoszenia";
 }
+@if(@Model.name is null)
+{
+<h1>Oferta nie istnieje</h1>
+}
+else
+{
 <h1>@ViewData["Title"]</h1>
-<div>
+  <div>
     <table>
             <tr>
                 <th>
-                    <p>Nazwa</p>
+                    <p>Tytuł</p>
                 </th>
                 <th>
                     <p>@Model.name</p>
@@ -15,7 +21,7 @@
             </tr>
             <tr>
                 <th>
-                    <p>Data wstawienia oferty</p>
+                    <p>Data wstawienia ogłoszenia</p>
                 </th>
                 <th>
                     <p>@Model.date</p>
@@ -31,3 +37,5 @@
             </tr>
         </table>
 </div>
+  
+}
