@@ -15,7 +15,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
-builder.Services.AddTransient<IOfferService, OfferServiceDisplay>();
+builder.Services.AddTransient<IAdService, AdService>();
 builder.Services.AddMemoryCache();
 
 var app = builder.Build();

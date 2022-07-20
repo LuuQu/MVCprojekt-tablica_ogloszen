@@ -17,7 +17,7 @@ namespace ogloszenia.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.3")
+                .HasAnnotation("ProductVersion", "6.0.7")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -224,7 +224,7 @@ namespace ogloszenia.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("ogloszenia.Models.Offer", b =>
+            modelBuilder.Entity("ogloszenia.Models.Ad", b =>
                 {
                     b.Property<int>("id")
                         .ValueGeneratedOnAdd()
@@ -252,7 +252,7 @@ namespace ogloszenia.Data.Migrations
 
                     b.HasKey("id");
 
-                    b.ToTable("Offer");
+                    b.ToTable("Ad");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

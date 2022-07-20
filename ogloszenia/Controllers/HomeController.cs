@@ -9,11 +9,11 @@ namespace ogloszenia.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IOfferService _personService;
-        private Offer offer { get; set; }
-        public List<Offer> offerList { get; set; }
+        private readonly IAdService _personService;
+        private Ad Ad { get; set; }
+        public List<Ad> AdList { get; set; }
 
-        public HomeController(IOfferService personService)
+        public HomeController(IAdService personService)
         {
             _personService = personService;
             
@@ -22,26 +22,26 @@ namespace ogloszenia.Controllers
         {
             try
             {
-                offer = _personService.GetOffer(id);
+                Ad = _personService.GetAd(id);
             }
             catch
             {
-                offer = new Offer();
+                Ad = new Ad();
             }
-            if(offer == null)
+            if(Ad == null)
             {
-                offer = new Offer();
+                Ad = new Ad();
             }
-            return View(offer);
+            return View(Ad);
         }
         [Authorize]
-        public IActionResult AddOffer(Offer newOffer)
+        public IActionResult AddAd(Ad newAd)
         {
-            if (newOffer.name != null && newOffer.description != null)
+            if (newAd.name != null && newAd.description != null)
             {
-                TempData["AlertMessage"] = "Ogłoszenie o nazwie " + newOffer.name + " zostało dodana pomyślnie.";
-                newOffer.ownerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
-                _personService.AddOffer(newOffer);
+                TempData["AlertMessage"] = "Ogłoszenie o nazwie " + newAd.name + " zostało dodana pomyślnie.";
+                newAd.ownerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                _personService.AddAd(newAd);
                 return RedirectToAction("Index");
             }
             return View();
@@ -55,11 +55,11 @@ namespace ogloszenia.Controllers
                 {
                     page = 1;
                 }
-                offerList = _personService.GetAllOffers();
-                int offersCount = offerList.Count();
-                Pager pager = new Pager(offersCount, page, pageSize);
+                AdList = _personService.GetAllAds();
+                int adCount = AdList.Count();
+                Pager pager = new Pager(adCount, page, pageSize);
                 int pagesToSkip = (page - 1) * pageSize;
-                var data = offerList.Skip(pagesToSkip).Take(pageSize).ToList();
+                var data = AdList.Skip(pagesToSkip).Take(pageSize).ToList();
                 if(pager.TotalPages != 1)
                 {
                     this.ViewBag.Pager = pager;

@@ -11,6 +11,6 @@ namespace ogloszenia.Data
         {
             Database.EnsureCreated();
         }
-        public DbSet<Offer> Offer { get; set; }
+        public DbSet<Ad> Ad { get; set; }
     }
 }

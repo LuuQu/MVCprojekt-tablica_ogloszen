@@ -2,7 +2,7 @@
 
 namespace ogloszenia.Models
 {
-    public class Offer
+    public class Ad
     {
         [Key]
         public int id { get; set; }
