@@ -64,15 +64,16 @@ namespace ogloszenia.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [EmailAddress]
+            [Required(ErrorMessage = "Pole jest obowiązkowe.")]
+            [EmailAddress(ErrorMessage = "Podaj poprawny adres email")]
             public string Email { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Pole jest obowiązkowe.")]
+            [StringLength(100, ErrorMessage = "Hasło może mieć minimalnie {2} i maksymalnie {1} znaków.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
