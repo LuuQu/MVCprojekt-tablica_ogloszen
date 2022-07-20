@@ -13,7 +13,6 @@
         {
             TotalPages = (int)Math.Ceiling((decimal)totalItems/(decimal)pagesize);
             CurrentPage = page;
-            //StartPage/EndPage - ilość poprzednich/kolejnych stron, do których można bezpośrednio wrócić/przejść
             StartPage = CurrentPage - 2;
             EndPage = CurrentPage + 2;
             if(StartPage <= 0)

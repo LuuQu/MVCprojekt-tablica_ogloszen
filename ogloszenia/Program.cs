@@ -17,7 +17,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<IOfferService, OfferServiceDisplay>();
 builder.Services.AddMemoryCache();
-builder.Services.AddSession();
 
 var app = builder.Build();
 
@@ -40,7 +39,6 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
-app.UseSession();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
