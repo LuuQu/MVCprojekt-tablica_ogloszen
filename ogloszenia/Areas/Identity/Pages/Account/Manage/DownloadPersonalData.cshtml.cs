@@ -38,10 +38,10 @@ namespace ogloszenia.Areas.Identity.Pages.Account.Manage
             var user = await _userManager.GetUserAsync(User);
             if (user == null)
             {
-                return NotFound($"Unable to load user with ID '{_userManager.GetUserId(User)}'.");
+                return NotFound($"Nie można załadować użytkownika z ID '{_userManager.GetUserId(User)}'.");
             }
 
-            _logger.LogInformation("User with ID '{UserId}' asked for their personal data.", _userManager.GetUserId(User));
+            _logger.LogInformation("Użytkownik z ID '{UserId}' poprosił o dane osobiste.", _userManager.GetUserId(User));
 
             // Only include personal data for download
             var personalData = new Dictionary<string, string>();
@@ -55,7 +55,7 @@ namespace ogloszenia.Areas.Identity.Pages.Account.Manage
             var logins = await _userManager.GetLoginsAsync(user);
             foreach (var l in logins)
             {
-                personalData.Add($"{l.LoginProvider} external login provider key", l.ProviderKey);
+                personalData.Add($"{l.LoginProvider} klucz zewnętrznego dostawcy logowania", l.ProviderKey);
             }
 
             personalData.Add($"Authenticator Key", await _userManager.GetAuthenticatorKeyAsync(user));
