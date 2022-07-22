@@ -37,11 +37,10 @@ namespace ogloszenia.Controllers
         [Authorize]
         public IActionResult AddAd(Ad newAd)
         {
-            newAd.OwnerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
             if (newAd.Name != null && newAd.Description != null)
             {
                 TempData["AlertMessage"] = "Ogłoszenie o nazwie " + newAd.Name + " zostało dodana pomyślnie.";
-                if (ModelState.IsValid) { }
+                newAd.OwnerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _personService.AddAd(newAd);
                 return RedirectToAction("Index");
             }
