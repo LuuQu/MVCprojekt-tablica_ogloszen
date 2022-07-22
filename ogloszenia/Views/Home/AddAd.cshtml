@@ -4,16 +4,17 @@
 }
 <h1>@ViewData["Title"]</h1>
 <form class="needs-validation" novalidate>
+                <intput type="hidden" asp-for="@Model.OwnerId"></intput>
                 <div>
                 <div class="left">
                 <div>
                     <p>Tytuł</p>
-                    <input id="name" class="form-control" asp-for="@Model.name" onkeyup="EnableDisable()" required/>
+                    <input id="name" class="form-control" asp-for="@Model.Name" onkeyup="EnableDisable()" required/>
                 </div>
                 </div>
                 <div class="right">
                     <p>Opis</p>
-                    <textarea id="description" rows="3" onkeyup="EnableDisable()" asp-for="@Model.description" required></textarea>
+                    <textarea id="description" rows="3" onkeyup="EnableDisable()" asp-for="@Model.Description" required></textarea>
                 </div>
                 </div>
                 <div class="center">

@@ -28,15 +28,13 @@
             @foreach (var item in Model)
             {
                 <div>
-                    <form method="post">
-                        <button name="buttonid" value="@item.id" id="data" class="btn btn-light">
-                            <p style="font-weight: bold;">Nazwa:</p>
-                            <p>@item.name</p>
-                            <br>
-                            <p style="font-weight: bold;">Data:</p>
-                            <p>@item.date</p>
-                        </button>
-                    </form>
+                     <button type="button" id="data" class="btn btn-light" onclick="location.href='@Url.Action("Details","Home")'+ '/' + @item.Id">
+                         <p style="font-weight: bold;">Nazwa:</p>
+                         <p>@item.Name</p>
+                         <br>
+                         <p style="font-weight: bold;">Data:</p>
+                         <p>@item.Date</p>
+                     </button>
                 </div>
             }
         </div>

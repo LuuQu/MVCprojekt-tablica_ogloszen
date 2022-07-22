@@ -5,19 +5,19 @@ namespace ogloszenia.Models
     public class Ad
     {
         [Key]
-        public int id { get; set; }
+        public int Id { get; set; }
         [Required]
         [MaxLength(100)]
         [MinLength(1)]
-        public string name { get; set; }
+        public string Name { get; set; }
         [Required]
-        [MaxLength(500)]
+        [MaxLength(512)]
         [MinLength(1)]
-        public string description { get; set; }
+        public string Description { get; set; }
         [Required]
-        public DateTime date { get; set; }
+        public DateTime Date { get; set; }
         [Required]
         [MaxLength(256)]
-        public string ownerId { get; set; }
+        public string OwnerId { get; set; }
     }
 }

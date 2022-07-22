@@ -37,19 +37,18 @@ namespace ogloszenia.Controllers
         [Authorize]
         public IActionResult AddAd(Ad newAd)
         {
-            if (newAd.name != null && newAd.description != null)
+            newAd.OwnerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+            if (newAd.Name != null && newAd.Description != null)
             {
-                TempData["AlertMessage"] = "Ogłoszenie o nazwie " + newAd.name + " zostało dodana pomyślnie.";
-                newAd.ownerId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
+                TempData["AlertMessage"] = "Ogłoszenie o nazwie " + newAd.Name + " zostało dodana pomyślnie.";
+                if (ModelState.IsValid) { }
                 _personService.AddAd(newAd);
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(newAd);
         }
-        public IActionResult Index(int buttonid, int page)
+        public IActionResult Index(int page)
         {
-            if (buttonid == 0)
-            {
                 int pageSize = 4;
                 if (page < 1)
                 {
@@ -65,11 +64,6 @@ namespace ogloszenia.Controllers
                     this.ViewBag.Pager = pager;
                 }
                 return View(data);
-            }
-            else
-            {
-                return RedirectToAction("Details", new { id = buttonid });
-            }
         }
 
         public IActionResult Privacy()

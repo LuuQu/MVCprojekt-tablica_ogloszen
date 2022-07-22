@@ -13,17 +13,17 @@ namespace ogloszenia.Services
         }
         public List<Ad> GetAllAds()
         { 
-            return _context.Ad.OrderByDescending(x => x.date).Where(x => x.date > DateTime.Now.AddDays(-10)).ToList();
+            return _context.Ad.OrderByDescending(x => x.Date).Where(x => x.Date > DateTime.Now.AddDays(-10)).ToList();
         }
         public void AddAd(Ad Ad)
         {
-            Ad.date = DateTime.Now;
+            Ad.Date = DateTime.Now;
             _context.Ad.Add(Ad);
             _context.SaveChanges();
         }
         public Ad GetAd(int? id)
         {
-            return _context.Ad.FirstOrDefault(m => m.id == id);
+            return _context.Ad.FirstOrDefault(m => m.Id == id);
         }
     }
 }
