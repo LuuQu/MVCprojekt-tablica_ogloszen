@@ -37,6 +37,17 @@ namespace ogloszenia.Controllers
         [Authorize]
         public IActionResult AddAd(Ad newAd)
         {
+            //W razie wyrzucenia wyjątku - po odkomentowaniu kodu i usunięciu 51 linijki powinno zadziałać
+            /* 
+            if(newAd.Name == null) {
+                newAd.Name = "";
+            }
+            if(newAd.Description == null)
+            {
+                newAd.Description = "";
+            }
+            if (newAd.Name != "" && newAd.Description != "")
+            */
             if (newAd.Name != null && newAd.Description != null)
             {
                 TempData["AlertMessage"] = "Ogłoszenie o nazwie " + newAd.Name + " zostało dodana pomyślnie.";
